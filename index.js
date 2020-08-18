@@ -6,7 +6,7 @@ const binance = require("node-binance-api")();
 
 const bot = new Telegraf("1093840907:AAHd8jvFLeR0kgOVmHXoCDbw2xqgAYRGMWU", {
   username: "FinanzasHoy",
-  channelMode: false,
+  channelMode: true,
 });
 
 const url = "https://www.dolar.blue/";
@@ -15,66 +15,52 @@ let oficial = [];
 let blue = [];
 let btcPrice = "";
 
-let cryptoContext;
+let channelId;
 let cryptoRes = "";
 let dollarsContext;
 
 //#region Comandos del bot
+
+//bot.hears("/btc", (ctx) => {
+bot.on("text", (ctx) => {
+  channelId = ctx.update.channel_post.chat.id;
+  console.log(channelId);
+
+  //Cada hora tiempo se ejecuta este metodo
+  taskCrypto.start();
+
+  // A las 10, 12 y 15 horas se ejecuta
+  taskDolar.start();
+});
 
 //cuando le decis /start al bot responde lo siguiente
 bot.start((ctx) => {
   ctx.reply("Bienvenido! Elegi /dolar_blue, /dolar_oficial o /btc");
 });
 
-//responde a /dolar oficial
-bot.hears("/dolar_oficial", (ctx) => {
-  getDollars(true, false, ctx);
-});
-bot.hears("/dolar_blue", (ctx) => {
-  getDollars(false, true, ctx);
-});
-bot.hears("/subscribe_crypto", (ctx) => {
-  setCronCryto(true, ctx);
-});
-
-bot.hears("/unsubscribe_crypto", (ctx) => {
-  setCronCryto(false, ctx);
-});
-
-bot.hears("/subscribe_dolar", (ctx) => {
-  setCronDollars(true, ctx);
-});
-
-bot.hears("/unsubscribe_dolar", (ctx) => {
-  setCronDollars(false, ctx);
-});
 //#endregion
 //-------------------------------------------------------------------------------//
 //#region SetsTimers
 
-// timer para lanzar los valores de los 15 pares con mas volumen
-let taskCrypto = cron.schedule(
-  "*/1 * * * *",
+const taskCrypto = cron.schedule(
+  "* * 1 * * *",
   () => {
-    console.log("running a task every 1 minute");
-
-    // Pido los pares con mayor volumen las ultimas 24hrs
+    console.log("Ejecutando taskCrypto");
+    // Pido todos los pares con mayor volumen las ultimas 24hrs
     binance.prevDay(false, (error, prevDay) => {
-      // console.info(prevDay); // view all data
-      prevDay.sort((a, b) => parseFloat(b.volume) - parseFloat(a.volume));
-      //console.info(prevDay); // view all data
-      for (let obj of prevDay.slice(1, 16)) {
+      // Ordena segun volumen y filtro los 15 mayores
+      prevDay.sort(
+        (a, b) => parseFloat(b.quoteVolume) - parseFloat(a.quoteVolume)
+      );
+      prevDay = prevDay.filter((pair) => pair.symbol.indexOf("USDT") > 1);
+      for (let obj of prevDay.slice(0, 15)) {
         let symbol = obj.symbol;
-        let volume = parseInt(obj.volume);
-        cryptoRes +=
-          symbol +
-          " volume:" +
-          volume +
-          " change: " +
-          obj.priceChangePercent +
-          "%\n";
+        let volume = parseInt(obj.quoteVolume);
+        cryptoRes += `${symbol}  volume:${volume}  change: ${obj.priceChangePercent}%\n`;
       }
-      cryptoContext.reply(cryptoRes);
+      console.log(cryptoRes);
+      // Envia el mensaje al canal
+      bot.telegram.sendMessage(channelId, cryptoRes);
     });
   },
   {
@@ -82,11 +68,35 @@ let taskCrypto = cron.schedule(
   }
 );
 
-// timer para lanzar los valores del dolar 3 veces por dia
+// Timer para lanzar los valores del dolar 3 veces por dia
 let taskDolar = cron.schedule(
-  "*/30 * * * * *",
+  "* * 10,12,15 * * *",
   () => {
-    getDollars(true, true, false);
+    axios
+      .get(url)
+      .then((urlResponse) => {
+        const $ = cheerio.load(urlResponse.data);
+        // Se guardan los datos sacados de la web en el array "oficial"
+        $("p.price").each((i, element) => {
+          oficial.push($(element).html());
+        });
+        // Se guardan los datos sacados de la web en el array "blue"
+        $("p.price-blue").each((i, element) => {
+          blue.push($(element).html());
+        });
+      })
+      .then(() => {
+        bot.telegram.sendMessage(
+          channelId,
+          `OFICIAL compra: ${oficial[0]}$ venta: ${oficial[1]}$ promedio: ${oficial[2]}$ 
+        BLUE compra: ${blue[0]}$ venta: ${blue[1]}$ promedio: ${blue[2]}$`
+        );
+        oficial = [];
+        blue = [];
+      })
+      .catch(() => {
+        ctx.reply(`Hubo un error al intentar obtener los valores`);
+      });
   },
   {
     scheduled: false,
@@ -94,73 +104,12 @@ let taskDolar = cron.schedule(
   }
 );
 
-// Se suscribe o desuscribe a cryptoNews
-function setCronCryto(isSuscribe, ctx) {
-  cryptoContext = ctx;
-  if (isSuscribe) {
-    taskCrypto.start();
-    cryptoContext.reply(
-      "Ahora estas subscripcion a cryptoNews a cada hora recibiras los 15 pares con mayor volumen"
-    );
-  } else {
-    taskCrypto.stop();
-    cryptoContext.reply("Te has dado de baja de la subscripcion a cryptoNews");
-  }
-}
-
-// Se suscribe o desuscribe a dollarsNews
-function setCronDollars(isSuscribe, ctx) {
-  dollarsContext = ctx;
-  if (isSuscribe) {
-    taskDolar.start();
-    dollarsContext.reply(
-      "Ahora estas subscripcion a dollarsNews tres veces por dia recibiras la cotizacion del dolar oficial/blue"
-    );
-  } else {
-    taskDolar.stop();
-    dollarsContext.reply(
-      "Te has dado de baja de la subscripcion a dollarsNews"
-    );
-  }
-}
 //#endregion
 //-------------------------------------------------------------------------------//
-// funcion auxiliar
-function getDollars(isOficial, isBlue, ctx) {
-  axios
-    .get(url)
-    .then((urlResponse) => {
-      const $ = cheerio.load(urlResponse.data);
-      // Guardo los datos sacados de la web en el array "oficial"
-      $("p.price").each((i, element) => {
-        oficial.push($(element).html());
-      });
-      // Guardo los datos sacados de la web en el array "blue"
-      $("p.price-blue").each((i, element) => {
-        blue.push($(element).html());
-      });
-    })
-    .then(() => {
-      if (!ctx) ctx = dollarsContext;
-      if (isOficial) {
-        ctx.reply(
-          `OFICIAL compra: ${oficial[0]}$ venta: ${oficial[1]}$ promedio: ${oficial[2]}$`
-        );
-      }
-      if (isBlue) {
-        ctx.reply(
-          `BLUE compra: ${blue[0]}$ venta: ${blue[1]}$ promedio: ${blue[2]}$`
-        );
-      }
-      oficial = [];
-      blue = [];
-    })
-    .catch(() => {
-      ctx.reply(`Hubo un error al intentar obtener los valores`);
-    });
-}
 
-bot.hears("/btc", (ctx) => {
+// Deprecated
+/*bot.hears("/btc", (ctx) => {
+  console.log(ctx.update.channel_post.chat);
   axios
     .get(urlBtc)
     .then((rawJsonBtc) => {
@@ -174,7 +123,7 @@ bot.hears("/btc", (ctx) => {
     .catch(() => {
       ctx.reply(`Hubo un error al intentar obtener los valores`);
     });
-});
+});*/
 
 bot.launch();
 
