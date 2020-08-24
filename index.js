@@ -17,21 +17,23 @@ let channelId;
 let cryptoRes = "";
 
 bot.on("text", (ctx) => {
-  channelId =
-    ctx.update.channel_post != undefined
-      ? ctx.update.channel_post.chat.id
-      : "no soy un grupo";
-  console.log(channelId);
+  if (!channelId) {
+    channelId =
+      ctx.update.channel_post != undefined
+        ? ctx.update.channel_post.chat.id
+        : "no soy un grupo";
+    console.log(channelId);
 
-  // Cada hora tiempo se ejecuta este metodo
-  cronTaskCryptos.start();
+    // Cada hora tiempo se ejecuta este metodo
+    cronTaskCryptos.start();
 
-  // A las 10, 12 y 15 horas se ejecuta
-  cronTaskDolar.start();
+    // A las 10, 12 y 15 horas se ejecuta
+    cronTaskDolar.start();
+  }
 });
 
 const cronTaskCryptos = cron.schedule(
-  "* * */1 * * *",
+  "1 * * * *",
   () => {
     console.log("Ejecutando cronTaskCryptos");
     binance.prevDay(false, (error, prevDay) => {
@@ -66,7 +68,7 @@ function setCryptosMessage(prevDay) {
 }
 
 const cronTaskDolar = cron.schedule(
-  "* * 10,12,15 * * *",
+  "5 10,12,15 * * *",
   () => {
     axios
       .get(url)
