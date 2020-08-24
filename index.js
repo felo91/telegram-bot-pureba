@@ -18,6 +18,13 @@ let cryptoRes = "";
 
 bot.on("text", (ctx) => {
   setChannelId(ctx);
+  if (ctx.update.channel_post.text == "/usd") {
+    // Obtiene el valor de los dolares sincronicamente
+    getDollars();
+  } else if (ctx.update.channel_post.text == "/status") {
+    // Obtiene el valor de las crypto sincronicamente
+    getCryptos();
+  }
 });
 
 function setChannelId(ctx) {
@@ -37,6 +44,7 @@ const cronTaskDolar = cron.schedule(
     getDollars();
   },
   {
+    scheduled: true,
     timezone: "America/Argentina/Buenos_Aires",
   }
 );
@@ -44,18 +52,6 @@ const cronTaskDolar = cron.schedule(
 // Cada hora tiempo se ejecuta este metodo
 const cronTaskCryptos = cron.schedule("5 * * * *", () => {
   console.log("Ejecutando cronTaskCryptos");
-  getCryptos();
-});
-
-// Obtiene el valor de los dolares sincronicamente
-bot.hears("/usd", (ctx) => {
-  setChannelId(ctx);
-  getDollars();
-});
-
-// Obtiene el valor de las crypto sincronicamente
-bot.hears("/status", (ctx) => {
-  setChannelId(ctx);
   getCryptos();
 });
 
@@ -98,7 +94,6 @@ function getCryptos() {
         (a, b) => parseFloat(b.quoteVolume) - parseFloat(a.quoteVolume)
       );
       prevDay = prevDay.filter((pair) => pair.symbol.indexOf("USDT") > 1);
-
       setCryptosMessage(prevDay);
       console.log(cryptoRes);
       // Envia el mensaje al canal
@@ -116,7 +111,8 @@ function setCryptosMessage(prevDay) {
       parseInt(obj.quoteVolume) > 1000000
         ? parseInt(parseInt(obj.quoteVolume) / 1000000) + "M"
         : obj.quoteVolume;
-    cryptoRes += `${symbol}  vol: ${volume}  change: ${obj.priceChangePercent}%\n`;
+    let price = Math.round(obj.lastPrice * 10) / 10;
+    cryptoRes += `${symbol} $${price} vol: ${volume}  change: ${obj.priceChangePercent}%\n`;
   }
 }
 
