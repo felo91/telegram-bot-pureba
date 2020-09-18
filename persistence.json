@@ -1,0 +1,312 @@
+{
+  "KSMUSDT": {
+    "updated": "17 09 2020 22:12:42",
+    "percentage": "7.746"
+  },
+  "LINKDOWNUSDT": {
+    "updated": "18 09 2020 14:34:06",
+    "percentage": "11.909",
+    "price": "0.63600000"
+  },
+  "THETAUSDT": {
+    "updated": "18 09 2020 19:43:03",
+    "percentage": "5.296",
+    "price": "0.57342000"
+  },
+  "BNBDOWNUSDT": {
+    "updated": "17 09 2020 23:16:42",
+    "percentage": "5.050"
+  },
+  "NEOUSDT": {
+    "updated": "18 09 2020 12:29:03",
+    "percentage": "5.952",
+    "price": "24.87600000"
+  },
+  "BELUSDT": {
+    "updated": "17 09 2020 22:12:30",
+    "percentage": "-34.076"
+  },
+  "UNIUSDT": {
+    "updated": "18 09 2020 18:39:21",
+    "percentage": "102.520",
+    "price": "7.33310000"
+  },
+  "VETUSDT": {
+    "updated": "18 09 2020 13:27:15",
+    "percentage": "11.902",
+    "price": "0.01491900"
+  },
+  "BANDUSDT": {
+    "updated": "17 09 2020 22:12:30",
+    "percentage": "-14.274"
+  },
+  "ICXUSDT": {
+    "updated": "18 09 2020 08:29:12",
+    "percentage": "6.129"
+  },
+  "WINGUSDT": {
+    "updated": "17 09 2020 22:15:36",
+    "percentage": "-20.829"
+  },
+  "XTZDOWNUSDT": {
+    "updated": "18 09 2020 14:31:06",
+    "percentage": "11.097",
+    "price": "8.97700000"
+  },
+  "CTSIUSDT": {
+    "updated": "17 09 2020 22:31:06",
+    "percentage": "5.281"
+  },
+  "TFUELUSDT": {
+    "updated": "18 09 2020 12:42:24",
+    "percentage": "5.452",
+    "price": "0.00957600"
+  },
+  "SOLUSDT": {
+    "updated": "18 09 2020 16:41:39",
+    "percentage": "9.667",
+    "price": "3.02630000"
+  },
+  "TRXUPUSDT": {
+    "updated": "18 09 2020 11:02:03",
+    "percentage": "9.121",
+    "price": "6.14600000"
+  },
+  "LRCUSDT": {
+    "updated": "18 09 2020 14:36:45",
+    "percentage": "9.763",
+    "price": "0.26052000"
+  },
+  "BEAMUSDT": {
+    "updated": "17 09 2020 23:07:03",
+    "percentage": "5.275"
+  },
+  "ETHUPUSDT": {
+    "updated": "17 09 2020 23:08:12",
+    "percentage": "5.264"
+  },
+  "TRXUSDT": {
+    "updated": "18 09 2020 06:55:36",
+    "percentage": "10.034"
+  },
+  "SUSHIUSDT": {
+    "updated": "18 09 2020 17:21:18",
+    "percentage": "15.892",
+    "price": "1.67000000"
+  },
+  "JSTUSDT": {
+    "updated": "18 09 2020 00:37:09",
+    "percentage": "10.393"
+  },
+  "COMPUSDT": {
+    "updated": "18 09 2020 10:42:27",
+    "percentage": "5.936",
+    "price": "160.00000000"
+  },
+  "BZRXUSDT": {
+    "updated": "18 09 2020 18:05:45",
+    "percentage": "7.438",
+    "price": "0.30250000"
+  },
+  "QTUMUSDT": {
+    "updated": "18 09 2020 14:02:51",
+    "percentage": "11.229",
+    "price": "2.83100000"
+  },
+  "VTHOUSDT": {
+    "updated": "18 09 2020 12:25:00",
+    "percentage": "6.884",
+    "price": "0.00088500"
+  },
+  "XMRUSDT": {
+    "updated": "18 09 2020 00:03:36",
+    "percentage": "5.025"
+  },
+  "COSUSDT": {
+    "updated": "18 09 2020 00:08:54",
+    "percentage": "5.072"
+  },
+  "IRISUSDT": {
+    "updated": "18 09 2020 00:14:24",
+    "percentage": "5.451"
+  },
+  "MKRUSDT": {
+    "updated": "18 09 2020 00:35:51",
+    "percentage": "5.878"
+  },
+  "ARPAUSDT": {
+    "updated": "18 09 2020 02:14:18",
+    "percentage": "6.166"
+  },
+  "MBLUSDT": {
+    "updated": "18 09 2020 15:00:12",
+    "percentage": "5.627",
+    "price": "0.00189100"
+  },
+  "CRVUSDT": {
+    "updated": "18 09 2020 06:51:09",
+    "percentage": "11.076"
+  },
+  "SXPUSDT": {
+    "updated": "18 09 2020 12:41:33",
+    "percentage": "5.609",
+    "price": "1.54300000"
+  },
+  "SRMUSDT": {
+    "updated": "18 09 2020 14:07:42",
+    "percentage": "10.197",
+    "price": "2.08580000"
+  },
+  "TOMOUSDT": {
+    "updated": "18 09 2020 06:50:33",
+    "percentage": "6.831"
+  },
+  "BNBUSDT": {
+    "updated": "18 09 2020 06:50:33",
+    "percentage": "6.015"
+  },
+  "OGNUSDT": {
+    "updated": "18 09 2020 06:50:33",
+    "percentage": "5.770"
+  },
+  "KAVAUSDT": {
+    "updated": "18 09 2020 19:46:57",
+    "percentage": "5.555",
+    "price": "2.51380000"
+  },
+  "BNBUPUSDT": {
+    "updated": "18 09 2020 13:26:09",
+    "percentage": "11.075",
+    "price": "16.94100000"
+  },
+  "PERLUSDT": {
+    "updated": "18 09 2020 06:50:39",
+    "percentage": "6.486"
+  },
+  "STPTUSDT": {
+    "updated": "18 09 2020 16:49:09",
+    "percentage": "5.330",
+    "price": "0.01889000"
+  },
+  "RUNEUSDT": {
+    "updated": "18 09 2020 11:57:09",
+    "percentage": "10.394",
+    "price": "0.53850000"
+  },
+  "ARDRUSDT": {
+    "updated": "18 09 2020 07:09:57",
+    "percentage": "9.683"
+  },
+  "TRBUSDT": {
+    "updated": "18 09 2020 10:49:57",
+    "percentage": "10.749",
+    "price": "32.54800000"
+  },
+  "DIAUSDT": {
+    "updated": "18 09 2020 10:11:21",
+    "percentage": "12.572"
+  },
+  "OCEANUSDT": {
+    "updated": "18 09 2020 08:05:27",
+    "percentage": "10.323"
+  },
+  "PNTUSDT": {
+    "updated": "18 09 2020 08:24:06",
+    "percentage": "9.967"
+  },
+  "DOCKUSDT": {
+    "updated": "18 09 2020 18:07:09",
+    "percentage": "9.169",
+    "price": "0.02123300"
+  },
+  "SANDUSDT": {
+    "updated": "18 09 2020 10:42:27",
+    "percentage": "6.957",
+    "price": "0.04584500"
+  },
+  "ENJUSDT": {
+    "updated": "18 09 2020 10:42:27",
+    "percentage": "6.816",
+    "price": "0.16537000"
+  },
+  "FTMUSDT": {
+    "updated": "18 09 2020 17:29:06",
+    "percentage": "36.324",
+    "price": "0.03724000"
+  },
+  "BTSUSDT": {
+    "updated": "18 09 2020 11:35:03",
+    "percentage": "10.886",
+    "price": "0.02835000"
+  },
+  "WINUSDT": {
+    "updated": "18 09 2020 11:59:30",
+    "percentage": "9.789",
+    "price": "0.00010330"
+  },
+  "MATICUSDT": {
+    "updated": "18 09 2020 12:02:21",
+    "percentage": "9.165",
+    "price": "0.02144000"
+  },
+  "DOTDOWNUSDT": {
+    "updated": "18 09 2020 19:07:30",
+    "percentage": "5.858",
+    "price": "5.56500000"
+  },
+  "FIOUSDT": {
+    "updated": "18 09 2020 12:21:21",
+    "percentage": "7.588",
+    "price": "0.14050000"
+  },
+  "MANAUSDT": {
+    "updated": "18 09 2020 12:28:18",
+    "percentage": "6.364",
+    "price": "0.08182000"
+  },
+  "DREPUSDT": {
+    "updated": "18 09 2020 12:33:09",
+    "percentage": "6.286",
+    "price": "0.00279000"
+  },
+  "YFIUSDT": {
+    "updated": "18 09 2020 16:00:36",
+    "percentage": "5.981",
+    "price": "34447.57000000"
+  },
+  "XRPDOWNUSDT": {
+    "updated": "18 09 2020 14:31:03",
+    "percentage": "6.875",
+    "price": "9.41000000"
+  },
+  "LTCDOWNUSDT": {
+    "updated": "18 09 2020 14:46:51",
+    "percentage": "5.641",
+    "price": "10.14100000"
+  },
+  "ALGOUSDT": {
+    "updated": "18 09 2020 14:57:45",
+    "percentage": "-5.153",
+    "price": "0.33670000"
+  },
+  "LINKUSDT": {
+    "updated": "18 09 2020 14:57:45",
+    "percentage": "-5.725",
+    "price": "10.04640000"
+  },
+  "EOSDOWNUSDT": {
+    "updated": "18 09 2020 15:12:36",
+    "percentage": "7.146",
+    "price": "11.19600000"
+  },
+  "ETHDOWNUSDT": {
+    "updated": "18 09 2020 15:16:30",
+    "percentage": "5.233",
+    "price": "2.34000000"
+  },
+  "ADADOWNUSDT": {
+    "updated": "18 09 2020 15:58:00",
+    "percentage": "6.145",
+    "price": "11.96500000"
+  }
+}
